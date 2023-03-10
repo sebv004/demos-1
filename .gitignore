@@ -1,7 +1,6 @@
 *.tfvars
 .terraform/
-.terraform*
-terraform*
+terraform.tfstate*
 secret-sealed-main.yaml
 venv*
-lib/python*
+**/lib/python*

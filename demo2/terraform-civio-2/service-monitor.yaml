@@ -1,0 +1,31 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: podinfo-canary
+  namespace: test
+  labels:
+    release: kube-prometheus-stack
+spec:
+  endpoints:
+  - path: /metrics
+    port: http
+    interval: 5s
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: podinfo-canary
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: podinfo-primary
+  namespace: test
+  labels:
+    release: kube-prometheus-stack
+spec:
+  endpoints:
+    - path: /metrics
+      port: http
+      interval: 5s
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: podinfo

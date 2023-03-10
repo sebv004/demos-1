@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress-app1
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    argocd.argoproj.io/sync-wave: "301"
+spec:
+  rules:
+  - host: demo-1.sebv004.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: app1-nginx
+            port:
+              number: 80
+  tls:
+  - hosts:
+      - "demo-1.sebv004.com"
+    secretName: "app1-nginx"
+    
+        

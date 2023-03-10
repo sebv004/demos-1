@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: front1
+  name: front1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: front1
+    spec:
+      containers:
+      - image: sebv004/demo-2-front:0.1
+        name: nginx
+        resources: {}
+        ports:
+        - containerPort: 80
+
+status: {}

@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: front1
+  namespace: istio-system
+spec:
+  gateways:
+    - public-gateway.istio-system.svc.cluster.local
+  hosts:
+    - '*'
+  http:
+    - name: "base"
+      match:
+      - uri:
+          prefix: "/"
+      route:
+        - destination:
+            host: front1.default.svc.cluster.local
+            port:
+              number: 80
+    

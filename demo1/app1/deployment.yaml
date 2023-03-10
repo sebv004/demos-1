@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app1-nginx
+  name: app1-nginx
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app1-nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: app1-nginx
+    spec:
+      containers:
+      - image: sebv004/demo-1:0.5
+        name: nginx
+        resources: {}
+status: {}

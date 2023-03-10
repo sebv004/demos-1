@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: test1
+  name: test1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: test1
+      annotations:
+          ad.datadoghq.com/demo-2.check_names: |
+            ["openmetrics"]
+          ad.datadoghq.com/demo-2.init_configs: |
+            [{}]
+          ad.datadoghq.com/demo-2.instances: |
+            [
+              {
+                "openmetrics_endpoint": "http://%%host%%:%%port%%/metrics",
+                "namespace": "testsv1",
+                "metrics": [".*"]
+              }
+            ]
+    spec:
+      containers:
+      - image: sebv004/demo-2:2.0
+        name: demo-2
+        ports:
+        - containerPort: 5000
+        resources: {}
+status: {}

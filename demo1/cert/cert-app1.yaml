@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: app1-nginx
+  namespace: default
+spec:
+  secretName: app1-nginx
+  issuerRef:
+    name: cloudflare-prod
+    kind: ClusterIssuer
+  dnsNames:
+  - 'demo-1.sebv004.com'

@@ -1,0 +1,21 @@
+services:
+  rabbitmq-1:
+    image: rabbitmq:3.11.10-management
+    env_file: .env
+    ports:
+      - 15672:15672
+  publisher:
+    build: ./publisher
+    env_file: .env
+    ports:
+      - 8080:80
+    depends_on:
+      - rabbitmq-1
+  consumer:
+    build: ./consumer
+    env_file: .env
+    depends_on:
+      - rabbitmq-1
+      - publisher
+
+

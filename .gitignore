@@ -3,6 +3,6 @@
 terraform.tfstate*
 secret-sealed-main.yaml
 venv*
-demo3/flask1/bin
-demo3/flask1/include
-demo3/flask1/lib
+demo3/flask1/bin*
+demo3/flask1/include*
+demo3/flask1/lib*
